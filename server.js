@@ -3,10 +3,14 @@ const sequelize = require("./config/database");
 const userRoutes = require("./modules/users/user.routes");
 const productRoutes = require("./modules/products/product.routes");
 const orderRoutes = require("./modules/orders/order.routes");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./docs/swagger.yaml");
 
 const app = express();
 
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use("/api/users", userRoutes);
