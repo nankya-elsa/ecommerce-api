@@ -1,6 +1,7 @@
 const express = require("express");
 const sequelize = require("./config/database");
 const userRoutes = require("./modules/users/user.routes");
+const productRoutes = require("./modules/products/product.routes");
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 // Start server and connect to database
 const start = async () => {
